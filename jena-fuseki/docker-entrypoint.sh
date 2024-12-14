@@ -22,7 +22,11 @@ if [ ! -f "$FUSEKI_BASE/shiro.ini" ] ; then
   echo "Initializing Apache Jena Fuseki"
   echo ""
   cp "$FUSEKI_HOME/shiro.ini" "$FUSEKI_BASE/shiro.ini"
-  if [ -z "$ADMIN_USERNAME" ] ; then
+  if echo -n "$ADMIN_USERNAME" | grep -qE '=' ; then
+      echo "invalid ADMIN_USERNAME '$ADMIN_USERNAME', it can not contain ="
+      unset ADMIN_USERNAME
+  fi
+  if [ -z "$ADMIN_USERNAME" ]; then
       export ADMIN_USERNAME=admin
   fi
   if [ -z "$ADMIN_PASSWORD" ] ; then
