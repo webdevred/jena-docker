@@ -29,7 +29,7 @@ set -e
 if [ ! -z "$LOG_FORMAT" ] && ! echo -n "$LOG_FORMAT" | grep -qE '^((%[aAbBcdHIjmMpSUwWxXyYZFT%])|[^%])+$'; then
     invalid_strfttime_format=$LOG_FORMAT
     unset LOG_FORMAT
-    log "WARNING" "Invalid strfttime date format specifier in '$invalid_strfttime_format'."
+    log "WARN" "Invalid strfttime date format specifier in '$invalid_strfttime_format'."
 fi
 
 if [ ! -f "$FUSEKI_BASE/shiro.ini" ] ; then
